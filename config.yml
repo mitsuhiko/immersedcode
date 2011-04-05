@@ -1,0 +1,7 @@
+---
+active_modules: [pygments, tags, blog, latex]
+author: Armin Ronacher
+canonical_url: http://immersedcode.org/
+modules:
+  pygments:
+    style: tango

@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset=utf-8>
+  {% block htmlhead %}
+    <title>{% block title %}Home{% endblock %} | Armin Ronacher's Game and Graphics Development Adventures</title>
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://mitsuhiko.myopenid.com/">
+    <link href="http://fonts.googleapis.com/css?family=Vollkorn&subset=latin" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/style.css" type="text/css">
+    <link href="/feed.atom" rel="alternate" title="Recent Blog Posts" type="application/atom+xml">
+    {%- for link in links %}
+    <link rel="{{ link.rel }}" href="{{ link.href }}"{%
+      if link.media %} media="{{ link.media }}"{% endif %} type="{{ link.type }}">
+    {%- endfor %}
+  {% endblock %}
+  </head>
+  <body>
+    <div class=container>
+      <div class=header-wrapper>
+        <div class=header>
+          <a href="/about/">Armin Ronacher's</a> Game and Graphics Development Adventures
+        </div>
+        <div class=navigation>
+          <ul>
+            <li><a href="/">blog</a>
+            <li><a href="/archive/">archive</a>
+            <li><a href="/tags/">tags</a>
+            <li><a href="/about/">about</a>
+          </ul>
+        </div>
+      </div>
+      <div class=body>
+      {% block body %}{% endblock %}
+      </div>
+      <div class=footer>
+        <p>&copy; Copyright {{ format_date(format='YYYY') }} by Armin Ronacher.
+        <p>
+          Content licensed under the Creative Commons
+          attribution-noncommercial-sharealike License.
+        <p>
+          Contact me via <a href="mailto:armin.ronacher@active-4.com">mail</a>,
+          <a href="http://twitter.com/mitsuhiko">twitter</a>,
+          <a href="http://github.com/mitsuhiko">github</a> or
+          <a href="http://bitbucket.org/mitsuhiko">bitbucket</a>.
+        (<a href="/feed.atom" rel="alternate" title="Recent Blog Posts">feed</a>)
+      </div>
+    </div>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-20909083-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
