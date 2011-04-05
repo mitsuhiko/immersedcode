@@ -49,7 +49,7 @@ h1 + p.date                     { margin-top: -28px; font-style: italic; }
 pre, code, tt   { font-family: 'Consolas', 'Deja Vu Sans Mono',
                   'Bitstream Vera Sans Mono', 'Monaco', 'Courier New';
                   font-size: 0.82em; }
-pre             { line-height: 1.3; border: 1px solid #5ca09c;
+pre             { line-height: 1.3; border: 1px solid #9ed8d5;
                   border-left: none; border-right: none; padding: 10px;
                   background: url(pre.png) #edfaf9; }
 code, tt        { background: #eee; }

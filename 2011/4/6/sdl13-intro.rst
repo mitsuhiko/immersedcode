@@ -625,7 +625,7 @@ to be filled with one color until the application closes:
     void render()
     {
         glClearColor(0.3f, 0.6f, 0.9f, 1.0f);
-        glClear(GL_COLOR_BIT);
+        glClear(GL_COLOR_BUFFER_BIT);
     }
 
 Now if you start the application you should see a red window that does
