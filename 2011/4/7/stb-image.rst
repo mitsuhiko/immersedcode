@@ -119,3 +119,15 @@ into a regular `uint8_t` array or something.
 You can now use this surface for SDL blitting, but what you really want to
 do is to upload it to the graphics card.  How this works you can read `in
 my separate post about textures <../sdl-surface-to-texture/>`_.
+
+SDL Surface's API
+-----------------
+
+As you can see I was using the SDL surface above and I will continue to do
+this in most of the articles in this blog that are talking about SDL in
+some way.  However I strongly urge you to consider using your own tiny
+image class that has a simpler API.  If you are using C++ you can easily
+use a template that wraps an array and provides nicer ways to access
+individual pixels if you plan on doing that.
+
+If there are issues with endianess in these examples don't be surprised.

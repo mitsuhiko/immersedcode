@@ -114,8 +114,6 @@ your header file:
         int offset_y() const { return m_offset_y; }
         const texture *parent() const { return m_parent; }
 
-        texture *slice(int x, int y, int width, int height);
-
     private:
         texture *m_parent;
         int m_offset_x;
@@ -254,6 +252,20 @@ with the texture data.  For the common use case where you create a
 texture directly from the SDL surface, you can use the
 `texture_from_surface` helper function which automates that.
 
+Changing Texture Parameters
+---------------------------
+
+If you have the need of changing texture parameters it's probably not the
+best idea to make the constructor any more complex.  Instead you can just
+rebind the texture temporarily and issue a bunch of `glTexParameteri`
+calls.  The same goes for mipmap generation.  I recommend doing that
+instead of passing more stuff to the constructor for the very simple
+reason that if you can create the texture from a single filename string it
+simplifies resource handling a whole lot.  I will bring up an interesting
+concept to resource handling I am using myself which pretty much requires
+that you can load a texture with useful defaults from a single string that
+is a filename nothing else.
+
 Another word on the settings for the texture.  This code assumes that your
 only texture target is `TEXTURE_2D`.  That's actually not a bad assumption
 for the common case.  If you notice you need another target you might have
@@ -302,10 +314,10 @@ drawing function:
             x + tex->width(), y + tex->height(),
             x + tex->width(), y
         };
-        float fac_x = (float)texture->width() / texture->stored_width();
-        float fac_y = (float)texture->height() / texture->stored_height();
-        float off_x = (float)texture->offset_x() / texture->stored_width();
-        float off_y = (float)texture->offset_y() / texture->stored_height();
+        float fac_x = (float)tex->width() / tex->stored_width();
+        float fac_y = (float)tex->height() / tex->stored_height();
+        float off_x = (float)tex->offset_x() / tex->stored_width();
+        float off_y = (float)tex->offset_y() / tex->stored_height();
         float texcoords[] = {
             off_x, off_y,
             off_x, fac_y + off_y,
