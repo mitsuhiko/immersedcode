@@ -60,7 +60,7 @@ Here is how the structure looks in my case::
         libs/
         scripts/
         src/
-            hello.c
+            hello.cpp
         include/
             hello/hello.hpp
 
@@ -110,10 +110,10 @@ Add this into your “CMakeLists.txt” file:
 
     # A list of header and source files used by your application.
     set(SOURCES
-        src/hello.c
+        src/hello.cpp
     )
     set(HEADERS
-        include/hello.hpp
+        hello/hello.hpp
     )
 
     # The following code finds SDL 1.3 in your checkout on OS X, Linux
@@ -130,7 +130,7 @@ Add this into your “CMakeLists.txt” file:
     )
     find_library(SDLMAIN_LIBRARY
         NAMES SDLmain
-        PATHS ${SDL_DIR}
+        PATHS ${SDL_FOLDER}
         PATH_SUFFIXES local/lib VisualC/SDLmain/Release
         NO_DEFAULT_PATH
     )
