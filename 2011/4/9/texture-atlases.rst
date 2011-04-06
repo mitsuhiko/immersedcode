@@ -307,7 +307,7 @@ for my font rendering:
     }
     m_atlas->freeze();
 
-And this is how it looks:
+And this is how a font uploaded into such an atlas looks like:
 
 .. image:: /static/blog-media/atlas-for-fonts.png
    :align: center
