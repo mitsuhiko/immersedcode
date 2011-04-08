@@ -11,11 +11,12 @@ Independently of if you are using C, C++, C# or any other language out
 there for your game, the memory and resource problem will come up.
 Because you have to manage resources that are stored on the graphics
 device you cannot just use your language's memory management concept the
-way you are used to do that.  Loading images takes them, converting them
-too, and then you have to upload them to a separate device.  When it's no
-longer needed you will have to delete it from there.
+way you are used to do that.  Usually you will be loading images,
+converting them to textures, and then you have to upload them to a
+separate device.  When it's no longer needed you will have to delete it
+from there.
 
-What's worse is that OpenGL context's are bound to a thread, so you can't
+What's worse is that OpenGL contexts are bound to a thread, so you can't
 just clean up remote resources in any other thread.  So what does this
 mean in practice?  For a very basic game that does not use streaming or
 some other fancy methods you will want to do something like this:
