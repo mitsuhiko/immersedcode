@@ -229,4 +229,8 @@ vector.  Then it returns the loaded object.
 
 As a way to improve this performance wise one could substitute `std::map`
 with a hashmap that provides :math:`O(1)` access instead of
-:math:`O(\mathrm{log}(n))` access like the current one.
+:math:`O(\mathrm{log}(n))` access like the current one.  However the
+usefulness of this is pretty limited as you will be keeping pointer to the
+resources around anyways.  Looking up items from the resource manager per
+frame is a terribly idea as you really want to assure that the resource is
+loaded before you actually start rendering (splash screen etc.).
