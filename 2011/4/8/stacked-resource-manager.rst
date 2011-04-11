@@ -235,3 +235,27 @@ usefulness of this is pretty limited as you will be keeping pointer to the
 resources around anyways.  Looking up items from the resource manager per
 frame is a terribly idea as you really want to assure that the resource is
 loaded before you actually start rendering (splash screen etc.).
+
+A word about std::map<std::string, T>
+-------------------------------------
+
+The way `std::map` works internally is incredible inefficient if you are
+using strings as a key.  First of all the string object itself is stored
+in multiple places.  Thankfully `std::string` internally is usually
+implemented with copy-on-write so it's not as bad as it sounds.  However
+it could be better, and what you want to be using instead would be an
+`std::unordered_map`.  Unfortunately it's currently in tr1 and available
+from different headers.  Here is how you can get it in Visual Studio
+2010 and recent gcc/clang versions:
+
+.. sourcecode:: c++
+
+    #ifdef _MSC_VER
+    #include <unordered_map>
+    #else
+    #include <tr1/unordered_map>
+    #endif
+
+The type is for the time being called `std::tr1::unordered_map` for both
+implementations even though it's in the `unordered_map` header in Visual
+Studio.
