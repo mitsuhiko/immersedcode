@@ -62,7 +62,13 @@ texture slice on there.  For the texture object I am using, have a look at
 the `Surface to Texture article <../../7/sdl-surface-to-texture/>`_.
 
 This is by far not the best algorithm but it's easy to implement and
-yields acceptable results.
+yields acceptable results.  For an overview of algorithms for the bin
+packing problem have a look at the `A Thousand Ways to Pack the Bin
+<http://clb.demon.fi/files/RectangleBinPack.pdf>`_ paper by Jukka Jylanki
+which discusses different approaches.  This approach here is often called
+the “Guillotine Algorithm”.  It's widely used and was published by A. Watt
+and F. Policarpo in the book “D Games, Vol. 2: Animation and Advanced
+Real-Time Rendering” although it's not clear who the original author was.
 
 Dealing with Rounding Errors
 ----------------------------
