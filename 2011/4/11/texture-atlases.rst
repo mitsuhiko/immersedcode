@@ -1,6 +1,5 @@
 public: yes
 tags: [opengl, imaging, texturing]
-day-order: 2
 summary: |
   Texture switching is expensive and often not possible.  As the cheap way
   out, store more than one texture in the same image.  Here is how.
@@ -311,3 +310,16 @@ And this is how a font uploaded into such an atlas looks like:
 
 .. image:: /static/blog-media/atlas-for-fonts.png
    :align: center
+
+As you can see from this image there is a lot of empty space in there
+which could be nice using.  Unfortunately you cannot predict an advance
+how well your images fit into an atlas.  It's in fact an NP-complete
+problem as far as I'm aware so some optimisting guessing upfront is a good
+idea.  Because fonts render out really quickly for instance what I am
+doing is calculating the average expected glyph size times the number of
+glyphs I am expecting and creating an atlas of that size, then filling it.
+If it turns out that my guess was wrong I will double the size of one of
+the sides and try again.
+
+It's not perfect, but it works good enough for the time being that I don't
+care too much about it.
