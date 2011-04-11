@@ -200,21 +200,14 @@ surface, 0 is returned.
             left = new atlas_node(x, y, img_width, height);
             right = new atlas_node(x + img_width, y,
                                    width - img_width, height);
-            left->left = new atlas_node(x, y, img_width, img_height);
-            left->right = new atlas_node(x, y + img_height, img_width,
-                                         height - img_height);
         } else {
             /* extend to bottom */
             left = new atlas_node(x, y, width, img_height);
             right = new atlas_node(x, y + img_height,
                                    width, height - img_height);
-            left->left = new atlas_node(x, y, img_width, img_height);
-            left->right = new atlas_node(x + img_width, y,
-                                         width - img_width, img_height);
         }
 
-        left->left->in_use = true;
-        return left->left;
+        return left->insert_child(img, padding);
     }
 
 The atlas itself is not much more complex.  We create an SDL surface for
