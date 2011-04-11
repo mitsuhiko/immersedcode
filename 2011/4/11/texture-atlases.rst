@@ -4,8 +4,8 @@ summary: |
   Texture switching is expensive and often not possible.  As the cheap way
   out, store more than one texture in the same image.  Here is how.
 
-Simple Texture Atlasses
-=======================
+Simple Texture Atlases
+======================
 
 Say you want to develop a tile based game.  The simple approach to that
 would be creating a bunch of PNG images and then going through each tile,
@@ -22,7 +22,7 @@ Unless you have a monospaced font, the glyphs will be of entirely
 different sizes.  Also the texture array needs shaders so you might not
 want to dive into that immediately.
 
-So the easiest solution are texture atlasses.  The idea is that you have
+So the easiest solution are texture atlases.  The idea is that you have
 a large texture with a bunch of small textures on there.  Now there are
 two ways to create such a texture.  The one where you do that by hand in
 the image editor of choice, or you try to automatically fit textures on
