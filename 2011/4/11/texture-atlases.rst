@@ -279,7 +279,7 @@ it and you're good to go.
             return 0;
 
         SDL_Rect rect = { rv->x + m_padding, rv->y + m_padding, surface->w, surface->h };
-        SDL_BlitSurface(surface, 0, 0, m_surface, &rect);
+        SDL_BlitSurface(surface, 0, m_surface, &rect);
         rv->tex = m_texture->slice(rv->x + m_padding, rv->y + m_padding,
                                    surface->w, surface->h);
         return rv->tex;
