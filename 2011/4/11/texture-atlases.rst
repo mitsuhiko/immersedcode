@@ -61,6 +61,9 @@ is and if it's in use.  Furthermore we also will store a pointer to a
 texture slice on there.  For the texture object I am using, have a look at
 the `Surface to Texture article <../../7/sdl-surface-to-texture/>`_.
 
+This is by far not the best algorithm but it's easy to implement and
+yields acceptable results.
+
 Dealing with Rounding Errors
 ----------------------------
 
