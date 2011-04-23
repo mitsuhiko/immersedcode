@@ -43,6 +43,11 @@ development I am sure it should not be too complicated to further expand
 from that point.  Also this tutorial assumes that you want to use OpenGL
 for the actual rendering then and not SDL itself.
 
+I also wrote a script that sets up an SDL project very similar to the one
+below with some extra improvements and a base class.  Just download it and
+execute it with Python and it will do everything on this page for you:
+`sql-quickstart.py <http://bit.ly/sdl-quickstart>`_.
+
 Getting Started
 ---------------
 
