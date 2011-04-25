@@ -86,6 +86,7 @@ div.entry-overview h1:after         { content: " —"; }
 /* other alignment things */
 img.align-center        { margin: 15px auto; display: block; }
 img.align-right         { float: right; margin: 0 0 15px 0; display: block; }
+.clear                  { clear: both; }
 
 /* pagination */
 div.pagination          { margin: 36px 0 0 0; text-align: center; }
