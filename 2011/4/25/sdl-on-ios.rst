@@ -146,7 +146,8 @@ disposal.  Devices before the 3GS only have OpenGL ES 1.0, but these
 devices are slowly disappearing so for a small project it's not worth the
 hassle to support both.  The differences between those two are quite big
 (the former only does fixed function, the latter only does programmable
-pipeline).
+pipeline).  The following example however uses OpenGL ES 1.0 for
+simplicitly.
 
 To verify that everything works, create these two files:
 
@@ -213,6 +214,20 @@ src/main.cpp
         SDL_DestroyWindow(win);
         SDL_Quit();
     }
+
+Switching to OpenGL ES 2.0
+--------------------------
+
+If you want an OpenGL ES 2.0 context and environment you need two things:
+
+1.  Change `SDL_opengles.h` to `SDL_opengles2.h`
+2.  Tell SDL you want an OpenGL ES 2.0 context
+
+    .. sourcecode:: c++
+
+       SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+
+Make sure to call the latter before you create the window and context.
 
 Building and Running
 --------------------
