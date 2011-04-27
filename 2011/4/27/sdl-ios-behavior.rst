@@ -106,6 +106,59 @@ Here is how `SDL_GetNumDisplayModes` works:
         printf("%dx%d\n", mode.w, mode.h);
     }
 
+Touch Events
+------------
+
+Generally the events on the touchscreen are emitted as mouse events so you
+can just use that if you like.  For extra control you might however want
+to use the dedicated touch API.  It reports things differently and you
+will be notified about the indivdual finger motions.
+
+There are three events to look out for: `SDL_FINGERDOWN`, `SDL_FINGERUP`,
+and `SDL_FINGERMOTION`.  All of them carry the event data in the `tfinger`
+attribute on the event.  The interesting fields are these:
+
+*   `touchId` — the identifier of the touch device.  There is just one
+    touch device on iOS, but you will need this information to get the touch
+    state.
+*   `fingerId` — the number of the finger used
+*   `x`, `y`, `dx`, `dy` — the position information in its own scale.
+    This is not the pixel scale, you will have to calculate this yourself.
+    `dx` and `dy` are only available for `SDL_FINGERMOTION`.
+*   `pressure` — the pressure applied, this is also needs to be normalized
+    yourself to make use of this.
+
+So how can you convert from the values in `x` and `y` to actually useful
+values?  For this you need the actual `SDL_Touch` struct of the device
+which you can get with the `SDL_GetTouch` function which returns a pointer
+to the touch struct.  This struct will tell you the resolution of `x` and
+`y` and of the `pressure`.
+
+*   SDL_Touch->\ `xres` — resolution in X direction
+*   SDL_Touch->\ `yres` — resolution in Y direction
+*   SDL_Touch->\ `pressures` — resolution of the pressure values
+
+The following core normalizes the touch values into the range 0-1.  You
+can multiply this with the screen resolution to get actual pixel values
+back.  As the touch device has a higher resolution than the actual screen
+you don't want to do this when using the touchscreen as joystick
+replacement.
+
+.. sourcecode:: c++
+
+    if (evt.type == SDL_FINGERDOWN) {
+        SDL_Touch *state = SDL_GetTouch(evt.tfinger.touchId);
+        float x = (float)evt.tfinger.x / state->xres;
+        float y = (float)evt.tfinger.y / state->yres;
+        printf("%f/%f\n", x, y);
+    }
+
+Generally speaking you really want to use the regular mouse events if all
+you want to do is to select things on the screen and the touch API if you
+want to work with gestures.  At the point where you work with gestures you
+need to have an actual phone hooked up as the simulator cannot be used to
+do that.
+
 CMake and Info.plist
 --------------------
 
