@@ -121,7 +121,7 @@ attribute on the event.  The interesting fields are these:
 *   `touchId` — the identifier of the touch device.  There is just one
     touch device on iOS, but you will need this information to get the touch
     state.
-*   `fingerId` — the number of the finger used
+*   `fingerId` — the ID of the finger.  More below.
 *   `x`, `y`, `dx`, `dy` — the position information in its own scale.
     This is not the pixel scale, you will have to calculate this yourself.
     `dx` and `dy` are only available for `SDL_FINGERMOTION`.
@@ -137,6 +137,9 @@ to the touch struct.  This struct will tell you the resolution of `x` and
 *   SDL_Touch->\ `xres` — resolution in X direction
 *   SDL_Touch->\ `yres` — resolution in Y direction
 *   SDL_Touch->\ `pressures` — resolution of the pressure values
+*   SDL_Touch->\ `num_fingers` — number of fingers currently down on the
+    device.
+*   SDL_Touch->\ `fingers` — an array with the IDs of all fingers down.
 
 The following core normalizes the touch values into the range 0-1.  You
 can multiply this with the screen resolution to get actual pixel values
@@ -158,6 +161,37 @@ you want to do is to select things on the screen and the touch API if you
 want to work with gestures.  At the point where you work with gestures you
 need to have an actual phone hooked up as the simulator cannot be used to
 do that.
+
+Special note on the finger IDs.  These things are identifiers that are
+very short living.  They are removed the moment the finger is removed from
+the surface which has two effects: first of all fingers can go away, be
+prepared for that and secondly the `SDL_FINGERUP` event will no longer be
+able to access the finger.
+
+What is the finger in SDL speak?  With `SDL_GetFinger` you can get the
+state of the finger for further processing:
+
+.. sourcecode:: c++
+
+    SDL_Touch *state = SDL_GetTouch(evt.tfinger.touchId);
+    if (!state)
+        return;
+    SDL_Finger *finger = SDL_GetFinger(state, evt.tfinger.fingerId);
+    if (!finger)
+        return;
+
+What does the finger struct expose?
+
+*   SDL_Finger->\ `x` / `y` / `pressure` — pretty much the same thing you
+    also have in the event itself.
+*   SDL_Finger->\ `xdelta` / `ydelta` — delta since the last finger
+    motion.
+*   SDL_Finger->\ `last_x` / `last_y` / `last_pressure` — the old values
+    for the coordinates or pressure levels.
+
+As you can see from the examples above: `SDL_Finger` and `SDL_Touch` are
+memory managed by SDL itself, so you shouldn't tamper with it.  Also
+consider it read only.
 
 CMake and Info.plist
 --------------------
