@@ -251,3 +251,6 @@ be able to vibrate the device.  However there are two ways out: you can
 either provide a patch for SDL which shouldn't be too hard, or add an
 objective C file yourself and send the iPhone the appropriate commands
 yourself.
+
+For more information about how SDL works on iOS read this `followup
+article about the behavior of SDL <../../27/sdl-ios-behavior/>`_.
