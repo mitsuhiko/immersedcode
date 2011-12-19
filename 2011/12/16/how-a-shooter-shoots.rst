@@ -303,6 +303,8 @@ available on the internet.
 -   The Halo `I shot you first talk
     <http://www.gdcvault.com/play/1014345/I-Shot-You-First-Networking>`_ at
     the GDC vault.
+-   Austin GDC 2008 talk about `Robust Efficient Networking
+    <http://vimeo.com/1808631>`__ by Ben Garney.
 
 This is all the stuff I have used so far.  I am sure there are tons of
 books on the topic but I do not have any recommendations there.
