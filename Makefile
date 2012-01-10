@@ -10,4 +10,5 @@ serve:
 	run-rstblog serve
 
 upload:
-	scp -r _build/* immersedcode.org:/var/www/immersedcode.org/
+	rsync -a _build/ immersedcode.org:/var/www/immersedcode.org/
+	@echo "Done..."
