@@ -22,15 +22,12 @@ readable.  All the examples on this page are in CoffeeScript or GLSL.
    :align: center
    :alt: Picture explanation of my minecrafty renderer.
 
-.. raw:: html
+The above image is the finished results of my adventures.  A badly
+performing live demo `can be found here
+<http://dev.pocoo.org/~mitsuhiko/webglmc>`_ and the sourcecode is on
+github under `mitsuhiko/webgl-meincraft
+<https://github.com/mitsuhiko/webgl-meincraft>`_.
 
-   <small>
-
-The above image is the finished results of my adventures.
-
-.. raw:: html
-
-   </small>
 
 Matrix Libraries
 ----------------
